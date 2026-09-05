@@ -1,0 +1,11 @@
+export type Member = { id:string;name:string;role:string;bio:string;photoKey?:string|null;photoUrl?:string;email?:string;instagram?:string;linkedin?:string;sortOrder:number;active:boolean };
+export type Package = { id:string;name:string;label:string;price:number;priceNote:string;features:string[];featured:boolean;active:boolean;sortOrder:number };
+export type Stat = { id:"happy_clients"|"completed_projects"|"client_satisfaction";label:string;value:number;manualValue:number;suffix:string;autoMode:boolean;sortOrder:number };
+export type Project = { id:string;title:string;clientName:string;status:"active"|"completed";satisfaction:number|null;createdAt:string };
+export type ContactLeadStatus = "new"|"contacted"|"qualified"|"won"|"closed"|"spam";
+export type ContactLead = { id:string;name:string;email:string;phone:string;subject:string;message:string;status:ContactLeadStatus;notes:string;source:string;consentAt:string;createdAt:string;updatedAt:string };
+export type SiteSettings = { companyName:string;adminName:string;phone:string;whatsapp:string;whatsappMessage:string;email:string;address:string;instagram:string;linkedin:string;heroTitle:string;heroAccent:string;heroText:string };
+export type AdminNote = { id:string;title:string;content:string;pinned:boolean;createdAt:string;updatedAt:string };
+export type AdminPreferences = { email:string;displayName:string;recoveryEmail:string;notificationEmail:string;notificationsEnabled:boolean;emailDeliveryConfigured:boolean };
+export type PublicData = { members:Member[];packages:Package[];stats:Stat[];settings:SiteSettings };
+export type AdminData = PublicData & { projects:Project[];leads:ContactLead[];notes:AdminNote[];admin:AdminPreferences };

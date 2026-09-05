@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1787832145409,
+      "tag": "0000_romantic_namor",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1787856517889,
+      "tag": "0001_furry_frightful_four",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788615343285,
+      "tag": "0002_special_the_executioner",
+      "breakpoints": true
+    }
+  ]
+}
