@@ -8,6 +8,10 @@ const vite=await createServer({appType:"custom",configFile:false,root,server:{mi
 after(async()=>{await vite.close();});
 const security=await vite.ssrLoadModule("/lib/admin-security-core.ts");
 
+test("uses the maximum PBKDF2 iteration count supported by Cloudflare Workers",()=>{
+  assert.equal(security.PASSWORD_HASH_ITERATIONS,100_000);
+});
+
 test("enforces the strong admin password policy",()=>{
   assert.match(security.passwordIssue("short"),/12/);
   assert.match(security.passwordIssue("alllowercase123!"),/uppercase/);
