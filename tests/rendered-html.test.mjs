@@ -26,4 +26,5 @@ test("builds the complete MIKRAS production artifact",async()=>{
   assert.match(output,/Facebook URL/);
   assert.match(output,/MIKRAS on TikTok/);
   assert.match(output,/grid-auto-flow:\s*column/);
+  assert.match(output,/\.ref-menu\{[^}]*grid-area:1\/3[^}]*display:grid/);
 });
