@@ -5,7 +5,8 @@ import { validAdminEmail } from "@/lib/admin-security-core";
 
 export const dynamic = "force-dynamic";
 
-const settingKeys = ["companyName","adminName","phone","whatsapp","whatsappMessage","email","address","instagram","linkedin","heroTitle","heroAccent","heroText"];
+const socialKeys = ["facebook","instagram","tiktok","twitter","linkedin"] as const;
+const settingKeys = ["companyName","adminName","phone","whatsapp","whatsappMessage","email","address",...socialKeys,"heroTitle","heroAccent","heroText"];
 const statIds = ["happy_clients","completed_projects","client_satisfaction"];
 const leadStatuses = ["new","contacted","qualified","won","closed","spam"];
 const text = (form: FormData, key: string) => String(form.get(key) ?? "").trim();
@@ -27,9 +28,9 @@ export async function POST(request: Request) {
   try {
     const form = await request.formData(); const action = text(form, "action"); const now = new Date().toISOString(); const { db, bucket } = bindings();
     if (action === "save_settings") {
-      const instagram=safeHttpUrl(text(form,"instagram"));const linkedin=safeHttpUrl(text(form,"linkedin"));
-      if(instagram===null||linkedin===null)return Response.json({error:"Instagram and LinkedIn must use a valid http(s) URL."},{status:400});
-      const values:Record<string,string>={};for(const key of settingKeys)values[key]=text(form,key).slice(0,key==="heroText"||key==="whatsappMessage"?500:180);values.instagram=instagram;values.linkedin=linkedin;
+      const socialValues=Object.fromEntries(socialKeys.map(key=>[key,safeHttpUrl(text(form,key))])) as Record<(typeof socialKeys)[number],string|null>;
+      if(Object.values(socialValues).some(value=>value===null))return Response.json({error:"Social media links must use a valid http(s) URL."},{status:400});
+      const values:Record<string,string>={};for(const key of settingKeys)values[key]=text(form,key).slice(0,key==="heroText"||key==="whatsappMessage"?500:180);for(const key of socialKeys)values[key]=socialValues[key]??"";
       await db.batch(settingKeys.map((key) => db.prepare("INSERT INTO site_settings (key,value,updated_at) VALUES (?,?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value,updated_at=excluded.updated_at").bind(key, values[key], now)));
       return Response.json({ ok: true });
     }
