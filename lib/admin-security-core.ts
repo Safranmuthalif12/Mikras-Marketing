@@ -3,7 +3,7 @@ export const ADMIN_SESSION_DAYS = 14;
 export const ADMIN_RESET_MINUTES = 30;
 export const ADMIN_MAX_LOGIN_ATTEMPTS = 5;
 export const ADMIN_LOCK_MINUTES = 15;
-export const PASSWORD_HASH_ITERATIONS = 210_000;
+// Cloudflare Workers WebCrypto currently caps PBKDF2 at 100,000 iterations.\nexport const PASSWORD_HASH_ITERATIONS = 100_000;
 
 const encoder = new TextEncoder();
 
