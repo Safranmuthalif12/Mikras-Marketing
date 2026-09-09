@@ -4,10 +4,10 @@ Production-ready MIKRAS Marketing website and admin control room, built with Rea
 
 ## Included
 
-- Responsive public marketing website matching the approved MIKRAS design
+- Responsive public marketing website matching the approved MIKRAS design, with two-column mobile card grids and swipeable packages
 - Animated service cards and detailed service popups
 - Animated right-to-left team carousel with profile popups
-- Admin-managed members, photos, packages, company details and WhatsApp message
+- Admin-managed members, photos, packages, company details, WhatsApp message and Facebook/Instagram/TikTok/X/LinkedIn links
 - Real project records with automatic client, completion and satisfaction counters
 - Secure contact form with validation, consent, honeypot, origin checks, IP hashing and rate limiting
 - Lead inbox with status, private follow-up notes, search, filtering and safe CSV export
