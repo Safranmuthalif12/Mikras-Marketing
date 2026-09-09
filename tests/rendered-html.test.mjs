@@ -23,4 +23,7 @@ test("builds the complete MIKRAS production artifact",async()=>{
   assert.match(output,/admin\/forgot-password/);
   assert.match(output,/api\/contact/);
   assert.match(output,/mikras_admin_session/);
+  assert.match(output,/Facebook URL/);
+  assert.match(output,/MIKRAS on TikTok/);
+  assert.match(output,/grid-auto-flow:\s*column/);
 });
