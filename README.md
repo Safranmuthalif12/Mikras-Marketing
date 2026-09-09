@@ -88,7 +88,7 @@ For initial testing, Resend can send from `onboarding@resend.dev` only to the em
 
 ## Security notes
 
-- Passwords use salted PBKDF2-SHA256 with 210,000 iterations.
+- Passwords use salted PBKDF2-SHA256 with Cloudflare's maximum supported 100,000 iterations.
 - Session and password-reset tokens are random and only SHA-256 hashes are stored.
 - Sessions are `HttpOnly`, `SameSite=Strict`, production `Secure`, and expire after 14 days.
 - Five invalid logins lock the account for 15 minutes.
