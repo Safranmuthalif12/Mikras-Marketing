@@ -18,6 +18,7 @@ async function readBuildTree(directory){
 
 test("builds the complete MIKRAS production artifact",async()=>{
   const output=await readBuildTree(path.join(root,"dist"));
+  const authFormSource=await readFile(path.join(root,"app/admin/auth-form.tsx"),"utf8");
   assert.match(output,/MIKRAS Marketing/);
   assert.match(output,/Scale your brand/);
   assert.match(output,/admin\/forgot-password/);
@@ -27,4 +28,6 @@ test("builds the complete MIKRAS production artifact",async()=>{
   assert.match(output,/MIKRAS on TikTok/);
   assert.match(output,/grid-auto-flow:\s*column/);
   assert.match(output,/\.ref-menu\{[^}]*grid-area:1\/3[^}]*display:grid/);
+  assert.match(authFormSource,/const formElement=event\.currentTarget/);
+  assert.match(authFormSource,/formElement\.reset\(\)/);
 });
