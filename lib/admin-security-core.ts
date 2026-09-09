@@ -3,7 +3,8 @@ export const ADMIN_SESSION_DAYS = 14;
 export const ADMIN_RESET_MINUTES = 30;
 export const ADMIN_MAX_LOGIN_ATTEMPTS = 5;
 export const ADMIN_LOCK_MINUTES = 15;
-// Cloudflare Workers WebCrypto currently caps PBKDF2 at 100,000 iterations.\nexport const PASSWORD_HASH_ITERATIONS = 100_000;
+// Cloudflare Workers WebCrypto currently caps PBKDF2 at 100,000 iterations.
+export const PASSWORD_HASH_ITERATIONS = 100_000;
 
 const encoder = new TextEncoder();
 
@@ -50,7 +51,9 @@ export async function sha256(value: string): Promise<string> {
 
 export async function hashPassword(password: string, salt = randomToken(18)): Promise<{ hash: string; salt: string }> {
   const key = await crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, ["deriveBits"]);
-  const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: base64UrlToBytes(salt), iterations: PASSWORD_HASH_ITERATIONS }, key, 256);
+  // Keep the Worker runtime value inline: some server-bundle optimizers can drop
+  // the exported metadata binding while retaining this function.
+  const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: base64UrlToBytes(salt), iterations: 100_000 }, key, 256);
   return { hash: bytesToBase64Url(new Uint8Array(bits)), salt };
 }
 
