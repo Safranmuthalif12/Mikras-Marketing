@@ -1,7 +1,7 @@
 import { env } from "cloudflare:workers";
 import type { AdminData, AdminNote, AdminPreferences, ContactLead, Member, Package, Project, PublicData, SiteSettings, Stat } from "./types";
 
-export const fallbackSettings: SiteSettings = { companyName:"MIKRAS Marketing",adminName:"MIKRAS Admin",phone:"+94 76 000 0000",whatsapp:"+94 76 000 0000",whatsappMessage:"Hello MIKRAS Marketing, I would like to discuss a project.",email:"hello@mikras.lk",address:"Sri Lanka · Working globally",instagram:"",linkedin:"",heroTitle:"Scale your brand",heroAccent:"beyond limits.",heroText:"We blend bold creative, sharp strategy and performance media to turn ambitious brands into measurable success stories." };
+export const fallbackSettings: SiteSettings = { companyName:"MIKRAS Marketing",adminName:"MIKRAS Admin",phone:"+94 76 000 0000",whatsapp:"+94 76 000 0000",whatsappMessage:"Hello MIKRAS Marketing, I would like to discuss a project.",email:"hello@mikras.lk",address:"Sri Lanka · Working globally",facebook:"",instagram:"",tiktok:"",twitter:"",linkedin:"",heroTitle:"Scale your brand",heroAccent:"beyond limits.",heroText:"We blend bold creative, sharp strategy and performance media to turn ambitious brands into measurable success stories." };
 export const previewMembers: Member[] = [
   {id:"preview-1",name:"Team profile 01",role:"Strategy & Growth",bio:"Ready for the admin to replace with a real team member, photo, role, bio and social links.",sortOrder:1,active:true},
   {id:"preview-2",name:"Team profile 02",role:"Creative & Content",bio:"Every team card is managed from the MIKRAS admin panel and opens with a smooth profile animation.",sortOrder:2,active:true},
